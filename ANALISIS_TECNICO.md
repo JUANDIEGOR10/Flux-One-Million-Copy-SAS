@@ -65,4 +65,4 @@ npm run test
 El componente de **Resumen de IA** no es solo visual; utiliza un motor de análisis que procesa los leads actuales en el store para ofrecer insights reales (aunque las respuestas sean plantillas premium), demostrando visión de negocio y capacidad de integración de tecnologías emergentes.
 
 ---
-*Documento preparado por Antigravity para One Million Copy SAS.*
+*Documento preparado para One Million Copy SAS.*
