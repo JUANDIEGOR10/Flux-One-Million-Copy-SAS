@@ -9,4 +9,18 @@ export const leadFilterSchema = z.object({
   }).optional(),
 });
 
+
 export type LeadFilterValues = z.infer<typeof leadFilterSchema>;
+
+export const leadSchema = z.object({
+  nombre: z.string().min(2, 'El nombre debe tener al menos 2 caracteres'),
+  email: z.string().email('Ingresa un correo electrónico válido'),
+  telefono: z.string().optional(),
+  fuente: z.enum(['instagram', 'facebook', 'landing_page', 'referido', 'otro'], {
+    errorMap: () => ({ message: 'Selecciona una fuente válida' }),
+  }),
+  producto_interes: z.string().optional(),
+  presupuesto: z.coerce.number().min(0, 'El presupuesto debe ser mayor o igual a 0').optional(),
+});
+
+export type LeadFormData = z.infer<typeof leadSchema>;

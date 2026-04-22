@@ -1,13 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import { MOCK_LEADS } from '../lib/mock-data';
 import { Lead, LeadFilters, LeadsResponse } from '../types/lead';
 import { isWithinInterval, parseISO } from 'date-fns';
+import { useLeadsDataStore } from '../store/leads-data-store';
 
 const fetchLeads = async (filters: LeadFilters): Promise<LeadsResponse> => {
-  // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 800));
+  // Simulate minor delay to show skeletons/loading states
+  await new Promise((resolve) => setTimeout(resolve, 300));
 
-  let filteredLeads = [...MOCK_LEADS];
+  const allLeads = useLeadsDataStore.getState().leads;
+  let filteredLeads = [...allLeads];
 
   // Search filter
   if (filters.search) {
@@ -39,17 +40,23 @@ const fetchLeads = async (filters: LeadFilters): Promise<LeadsResponse> => {
 
   // Sorting
   filteredLeads.sort((a, b) => {
-    const valA = a[filters.sortBy as keyof Lead];
-    const valB = b[filters.sortBy as keyof Lead];
+    const field = filters.sortBy as keyof Lead;
+    const order = filters.sortOrder === 'asc' ? 1 : -1;
+
+    const valA = a[field];
+    const valB = b[field];
 
     if (typeof valA === 'string' && typeof valB === 'string') {
-      return filters.sortOrder === 'asc'
-        ? valA.localeCompare(valB)
-        : valB.localeCompare(valA);
+      return valA.localeCompare(valB) * order;
     }
 
     if (typeof valA === 'number' && typeof valB === 'number') {
-      return filters.sortOrder === 'asc' ? valA - valB : valB - valA;
+      return (valA - valB) * order;
+    }
+
+    // Default sorting for dates/other fields
+    if (field === 'fecha_creacion') {
+      return (new Date(a.fecha_creacion).getTime() - new Date(b.fecha_creacion).getTime()) * order;
     }
 
     return 0;

@@ -46,7 +46,7 @@ export const useLeadsStore = create<LeadsState>()(
         set((state) => ({ 
           filters: { ...state.filters, page } 
         })),
-      setSortBy: (sortBy: any) => 
+      setSortBy: (sortBy) => 
         set((state) => ({ 
           filters: { ...state.filters, sortBy } 
         })),

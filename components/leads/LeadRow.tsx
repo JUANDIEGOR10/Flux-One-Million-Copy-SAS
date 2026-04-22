@@ -9,6 +9,9 @@ import {
   getStatusLabel 
 } from '@/lib/utils';
 import { 
+  Eye,
+  Edit2,
+  Trash2,
   Link as LinkIcon, 
   UserPlus, 
   MoreHorizontal, 
@@ -18,6 +21,9 @@ import {
 
 interface LeadRowProps {
   lead: Lead;
+  onView: (id: string) => void;
+  onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 const SourceIcon = ({ source }: { source: string }) => {
@@ -48,7 +54,7 @@ const StatusBadge = ({ status }: { status: string }) => {
   );
 };
 
-export default function LeadRow({ lead }: LeadRowProps) {
+export default function LeadRow({ lead, onView, onEdit, onDelete }: LeadRowProps) {
   return (
     <tr className="group transition-colors hover:bg-muted/30">
       <td className="px-6 py-4">
@@ -73,7 +79,7 @@ export default function LeadRow({ lead }: LeadRowProps) {
           {getSourceLabel(lead.fuente)}
         </div>
       </td>
-      <td className="px-6 py-4 italic text-muted-foreground">
+      <td className="px-6 py-4 italic text-muted-foreground truncate max-w-[150px]">
         {lead.producto_interes}
       </td>
       <td className="px-6 py-4 font-mono font-bold text-foreground">
@@ -83,7 +89,32 @@ export default function LeadRow({ lead }: LeadRowProps) {
         {formatDate(lead.fecha_creacion)}
       </td>
       <td className="px-6 py-4">
-        <StatusBadge status={lead.estado} />
+        <div className="flex items-center justify-between gap-4">
+          <StatusBadge status={lead.estado} />
+          <div className="flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+            <button 
+              onClick={() => onView(lead.id)}
+              className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+              title="Ver detalle"
+            >
+              <Eye className="h-4 w-4" />
+            </button>
+            <button 
+              onClick={() => onEdit(lead.id)}
+              className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-indigo-500/10 hover:text-indigo-500"
+              title="Editar"
+            >
+              <Edit2 className="h-4 w-4" />
+            </button>
+            <button 
+              onClick={() => onDelete(lead.id)}
+              className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-rose-500/10 hover:text-rose-500"
+              title="Eliminar"
+            >
+              <Trash2 className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
       </td>
     </tr>
   );

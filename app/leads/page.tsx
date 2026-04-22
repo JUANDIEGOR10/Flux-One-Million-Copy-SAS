@@ -4,9 +4,12 @@ import LeadSearch from '@/components/leads/LeadSearch';
 import LeadFilters from '@/components/leads/LeadFilters';
 import LeadsTable from '@/components/leads/LeadsTable';
 import LeadPagination from '@/components/leads/LeadPagination';
-import { Download, Plus, LayoutGrid, List } from 'lucide-react';
+import { useUIStore } from '@/store/ui-store';
+import { Download, Plus, List, LayoutGrid } from 'lucide-react';
 
 export default function LeadsPage() {
+  const { openLeadDrawer } = useUIStore();
+
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
@@ -24,23 +27,24 @@ export default function LeadsPage() {
             <Download className="h-4 w-4" />
             <span className="hidden sm:inline">Exportar CSV</span>
           </button>
-          <button className="flex h-11 items-center gap-2 rounded-xl bg-primary px-6 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:bg-primary/90 hover:scale-105 active:scale-95">
+          <button 
+            onClick={() => openLeadDrawer('create')}
+            className="flex h-11 items-center gap-2 rounded-xl bg-primary px-6 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:bg-primary/90 hover:scale-105 active:scale-95"
+          >
             <Plus className="h-4 w-4" />
             Nuevo Lead
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
-        {/* Filters Sidebar */}
-        <div className="lg:col-span-1">
-          <div className="sticky top-24 space-y-6 rounded-2xl border bg-card/50 p-6 backdrop-blur-sm">
-            <LeadFilters />
-          </div>
+      <div className="space-y-6">
+        {/* Horizontal Filters Bar */}
+        <div className="rounded-2xl border bg-card/30 p-4 backdrop-blur-sm shadow-xl shadow-primary/5">
+          <LeadFilters />
         </div>
 
-        {/* Main Content */}
-        <div className="space-y-6 lg:col-span-3">
+        {/* Main Content Area */}
+        <div className="space-y-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <LeadSearch />
             

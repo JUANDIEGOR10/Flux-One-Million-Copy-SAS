@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 import { useStats } from './useStats';
-import { getSourceLabel } from '../lib/utils';
 
 export interface AISummaryResult {
   analysis: string;
