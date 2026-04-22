@@ -26,7 +26,7 @@ export default function LeadDrawer({ isOpen, onClose, leadId, mode }: LeadDrawer
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<LeadFormData>({
+  } = useForm({
     resolver: zodResolver(leadSchema),
   });
 
@@ -54,13 +54,21 @@ export default function LeadDrawer({ isOpen, onClose, leadId, mode }: LeadDrawer
     }
   }, [isOpen, mode, currentLead, reset]);
 
-  const onSubmit = async (data: LeadFormData) => {
-    if (mode === 'create') {
-      addLead(data);
-    } else if (mode === 'edit' && leadId) {
-      updateLead(leadId, data);
+  const onSubmit = async (data: any) => {
+    try {
+      const formattedData = {
+        ...data,
+        presupuesto: data.presupuesto ? Number(data.presupuesto) : undefined
+      };
+      if (mode === 'edit' && leadId) {
+        updateLead(leadId, formattedData);
+      } else {
+        addLead(formattedData);
+      }
+      onClose();
+    } catch (error) {
+      console.error("Error al guardar lead:", error);
     }
-    onClose();
   };
 
   const isViewOnly = mode === 'view';
