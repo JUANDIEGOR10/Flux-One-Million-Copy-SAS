@@ -13,6 +13,7 @@ import { useStats } from '@/hooks/useStats';
 import { formatCurrency } from '@/lib/utils';
 import LeadTrendChart from './LeadTrendChart';
 import SourceChart from './SourceChart';
+import AISummaryCard from './AISummaryCard';
 import { motion } from 'framer-motion';
 
 export default function StatsOverview() {
@@ -66,34 +67,8 @@ export default function StatsOverview() {
         <SourceChart data={sourceData} />
       </div>
 
-      {/* AI Summary Banner (Mock) */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-600 to-cyan-600 p-8 text-white shadow-2xl shadow-indigo-500/20"
-      >
-        <div className="relative z-10 flex flex-col justify-between gap-6 md:flex-row md:items-center">
-          <div className="max-w-2xl">
-            <div className="mb-4 flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
-              <Lightbulb className="h-4 w-4" />
-              Insight Inteligente
-            </div>
-            <h2 className="text-2xl font-black md:text-3xl">Optimiza tu pauta en Instagram</h2>
-            <p className="mt-2 text-indigo-50/80">
-              El 45% de tus leads provienen de Instagram con un presupuesto promedio alto. 
-              Considera reasignar un 15% del presupuesto de Facebook para maximizar el ROI.
-            </p>
-          </div>
-          <button className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-8 text-sm font-bold text-indigo-600 transition-all hover:bg-indigo-50 hover:scale-105 active:scale-95 md:w-auto">
-            Ver detalle
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-        
-        {/* Abstract background shapes */}
-        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-        <div className="absolute -bottom-20 left-20 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl" />
-      </motion.div>
+      {/* AI Summary Section */}
+      <AISummaryCard />
     </div>
   );
 }

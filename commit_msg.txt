@@ -1,0 +1,1 @@
+feat: implement AI Summary module with lead analysis and strategic insights generation
