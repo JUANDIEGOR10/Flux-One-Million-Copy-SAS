@@ -9,6 +9,7 @@ import {
   Menu
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 export default function Topbar() {
   const pathname = usePathname();
@@ -43,10 +44,14 @@ export default function Topbar() {
           />
         </div>
         
-        <button className="relative rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
-          <Bell className="h-5 w-5" />
-          <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-primary border-2 border-card" />
-        </button>
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+          
+          <button className="relative rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
+            <Bell className="h-5 w-5" />
+            <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-primary border-2 border-card" />
+          </button>
+        </div>
         
         <div className="h-8 w-[1px] bg-border mx-1" />
         

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
+import ThemeProvider from "@/components/providers/ThemeProvider";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
 
@@ -18,9 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="dark">
+    <html lang="es" suppressHydrationWarning>
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
         <Providers>
+          <ThemeProvider>
           <div className="flex min-h-screen">
             <Sidebar />
             <div className="flex flex-1 flex-col">
@@ -30,6 +32,7 @@ export default function RootLayout({
               </main>
             </div>
           </div>
+          </ThemeProvider>
         </Providers>
       </body>
     </html>
