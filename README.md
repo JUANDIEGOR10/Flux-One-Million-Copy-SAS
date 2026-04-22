@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ Flux OMCS — Lead Management Dashboard
 
-## Getting Started
+¡Bienvenido a **Flux OMCS**! Una plataforma premium diseñada para One Million Copy SAS que permite capitalizar la gestión de leads provenientes de diversos embudos de marketing mediante análisis avanzado y asistencia de Inteligencia Artificial.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Tecnologías Elegidas
+
+Este proyecto utiliza un stack moderno y eficiente para garantizar velocidad, mantenibilidad y una experiencia de usuario superior:
+
+| Tecnología | Razón de elección |
+| :--- | :--- |
+| **Next.js 14** | App Router para una navegación fluida, SEO optimizado y estructura escalable. |
+| **TypeScript** | Robustez técnica, autocompletado y prevención de errores en tiempo de desarrollo. |
+| **Tailwind CSS** | Estilizado rápido y consistente con un sistema de diseño basado en utilidad. |
+| **Zustand** | Gestión de estado ligero y persistente para filtros y preferencias. |
+| **TanStack Query** | Manejo profesional de caché, estados de carga y sincronización de datos. |
+| **Recharts** | Visualización de datos clara y responsiva para KPIs de marketing. |
+| **Framer Motion** | Micro-interacciones y animaciones suaves que elevan la percepción de calidad. |
+
+---
+
+## 💻 Cómo Correr el Proyecto
+
+Sigue estos pasos para levantar el entorno de desarrollo localmente:
+
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/JUANDIEGOR10/Flux-One-Million-Copy-SAS.git
+   cd Flux-One-Million-Copy-SAS
+   ```
+
+2. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
+
+3. **Ejecutar en modo desarrollo:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Abrir en el navegador:**
+   Visita [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 📊 Arquitectura de Datos (Mocks)
+
+La aplicación es **100% frontend** y utiliza una capa de servicios simulados para demostrar funcionalidades complejas sin necesidad de un backend real:
+
+- **Mock Layer (`lib/mock-data.ts`)**: Base de datos de 15 leads realistas con diversos atributos (fuente, presupuesto, producto).
+- **Reactive Hooks (`hooks/useLeads.ts`)**: Simula el comportamiento de una API REST (latencia de 800ms, filtrado dinámico, búsqueda y paginación).
+- **AI Summary Engine (`hooks/useAISummary.ts`)**: Un motor de análisis local que procesa las estadísticas actuales para generar insights estratégicos en tiempo real.
+
+---
+
+## 🧪 Cómo Probar la Aplicación
+
+Para evaluar la funcionalidad completa, te recomendamos seguir este flujo:
+
+1. **Gestión de Leads**: Navega a la sección de Leads, busca por nombre (ej: "Alejandro") y aplica filtros por fuente (Instagram/Facebook). Nota cómo la paginación y el sorting se ajustan.
+2. **Dashboard de Estadísticas**: Entra al Dashboard para ver las gráficas de tendencia y distribución. Los datos se recalculan automáticamente según los leads activos.
+3. **Resumen Inteligente**: Pulsa el botón "Generar Resumen IA" en el Dashboard. Espera a que la "IA" analice tus datos (verás un estado de carga) y observa el reporte ejecutivo con recomendaciones.
+4. **Persistencia**: Cambia un filtro, refresca la página y observa cómo el estado se mantiene gracias a Zustand + LocalStorage.
+
+---
+
+## 🛠️ Estructura de Directorios
+
+```text
+src/
+├── app/            # Rutas y Layouts (Next.js App Router)
+├── components/     # Componentes de UI (Layout, Leads, Dashboard)
+├── hooks/          # Lógica de negocio (Data fetching, IA, Debounce)
+├── lib/            # Utilidades, Mocks y Validaciones
+├── store/          # Estado global (Zustand)
+└── types/          # Definiciones de TypeScript
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Desarrollado con ❤️ para **One Million Copy SAS**.

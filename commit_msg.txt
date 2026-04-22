@@ -1,1 +1,1 @@
-feat: implement AI Summary module with lead analysis and strategic insights generation
+docs: complete technical documentation and README for one million copy technical test
